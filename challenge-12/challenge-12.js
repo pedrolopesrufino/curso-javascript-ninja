@@ -72,7 +72,7 @@
     Remova o último livro, e mostre-o no console.
     */
 
-    books.pop();
+    console.log(books.pop());
 
     console.log( '\nAgora sobraram somente os livros:' );
     /*
@@ -80,7 +80,7 @@
     */
 
 	for(var prop in books){
-		console.log(books[prop])
+		console.log(books[prop]);
  	}	
 
     /*
@@ -131,23 +131,20 @@
     Juntando todos os itens do array, mostre no console seu nome.
     */
 
-    myName.join();
+    console.log( myName.join('') );
 
     console.log( '\n Meu nome invertido é:' );
 
     /*
     Ainda usando o objeto acima, mostre no console seu nome invertido.
     */
-    myName.reverse();
+    console.log(myName.reverse());
 
     console.log( '\n Agora em ordem alfabética:' );
     /*
     Mostre todos os itens do array acima, odenados alfabéticamente.
     */
 
-    myName.sort();
+    console.log(myName.sort());
 
     });
-
-
-    
