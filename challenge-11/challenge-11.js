@@ -1,4 +1,5 @@
-(function(){// Envolva todo o código desse arquivo em uma IIFE (incluindo esse comentário).
+(function(){
+    // Envolva todo o código desse arquivo em uma IIFE (incluindo esse comentário).
 
     /*
     Crie um loop que execute enquanto essa variável for verdadeira. Dentro do
@@ -52,7 +53,7 @@
     */
     
     function moreThan(comparisingAge){
-        console.log("The person has more than ", comparisingAge ,"?", person.age>comparisingAge)
+        console.log('The person has more than ', comparisingAge ,'?', person.age>comparisingAge)
     }
 
     /*
@@ -63,8 +64,14 @@
     console.log( 'De 0 a 10:' );
     var numbers = [];
 
-    for(var count = 0; count<=10; count++){
-        numbers.push(count);
+    for(var count = 0; count <20; count++){
+        if(count > 10){
+            break;
+        }
+        
+        numbers[count] = count;        
+        console.log(numbers[count])
+    
     }
 
     /*
@@ -74,9 +81,14 @@
     Mostrar no console os números do array.
     */
     console.log( 'Pares de 0 a 20:' );
-    var numbers = [];
-    for(var count = 0 ; count<=20; count++){
-        count % 2 === 0 ?  numbers.push(count): '';
-    }
+    
+    numbers = [];
 
+    for(var count = 0; count <=20; count++){
+        if( count % 2 === 0 ){
+            numbers[count] = count;
+            console.log( numbers[count] );
+        }    
+    }
+    
 });
