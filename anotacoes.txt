@@ -1,0 +1,28 @@
+REDES
+
+
+JS
+    principios FP
+    principais métodos
+    funçoes/obj literais // no modo normal
+    diferença let const 
+
+Math
+
+Python
+
+Hardware
+    tipos de memória RAM 
+    fontes
+    placa mae 
+    processadores
+
+
+Cálculo
+    soma e conversão de binarios
+    calculo de memoria
+
+SO 
+    processos
+    organização
+

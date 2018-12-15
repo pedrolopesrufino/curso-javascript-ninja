@@ -7,13 +7,13 @@
     Qual loop você deve usar para que essa mensagem seja mostrada no console?
     */
     
-    x = true;
+    var once = true;
 
     do{
         console.log('Entrou ao menos uma vez!');
     }
 
-    while(x===true);
+    while(once===true);
 
     /*
     Crie um objeto chamado `person`, que receba as seguintes propriedades:
@@ -39,7 +39,7 @@
     'The person has [COUNTER] properties'
     */
     
-    for(propridade in person){
+    for(propriedade in person){
         console.log('the ', propriedade , ' of person is ' , person[i]);
     }
 
@@ -63,7 +63,11 @@
     console.log( 'De 0 a 10:' );
     var numbers = [];
 
-    for(var count = 0; count<=10; count++){
+    for(var count = 0; count<=20; count++){
+        if ( count > 10  ){
+            break;
+        }
+        
         numbers.push(count);
     }
 

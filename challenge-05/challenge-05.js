@@ -11,7 +11,7 @@ Crie uma função que receba um array como parâmetro, e retorne esse array.
 
 function mFunction(myArray){
     return myArray;
-};
+}
 
 /*
 Imprima o segundo índice do array retornado pela função criada acima.
@@ -35,7 +35,7 @@ function funcion(array,num){
 Declare uma variável que recebe um array com 5 valores, de tipos diferentes.
 */
 
-var vetor = [0,"reckless",null,NaN,undefined];
+var vetor = [0,"reckless",null,NaN,["one","two","three","four","five"]];
 
 /*
 Invoque a função criada acima, fazendo-a retornar todos os valores do último
