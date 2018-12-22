@@ -136,7 +136,3 @@
   console.log(Array.isArray(justMod2Or3));
 });
 
-numberObjects.reduce( function(item, index){
-  return numberObjects.indexOf(item.number ===  2)
-})
-
