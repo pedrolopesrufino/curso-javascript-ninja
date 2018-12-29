@@ -23,24 +23,17 @@
     que será instanciado.
   */
     
-  function Person (name, lastname, age){
+  function Person (name, lastName, age){
 
-  this.name = name;
-  this.lastName = lastname;
-  this.age = age;
+  this.name = name,
+  this.lastName = lastName,
+  this.age = age,
     
-  this.getFullName = () => {
-    return name + ' ' + lastname;
-  }
+  this.getFullName = () => name + ' ' + lastName,  
+  this.getAge = () => age,
   
-  this.getAge = () => {
-    return age;
-  }
-  
-  this.addAge = (qtd) => {
-    return age += qtd;
-  }
-}
+  this.addAge = () => age += this.arguments[0]
+};
 
   /*
   Crie 3 novos objetos usando o construtor acima. Os objetos serão novas
@@ -50,9 +43,9 @@
   */
   console.log( 'Novas pessoas criadas à partir de Person:' );
   
-  var richard = new Person('Richard','Hendricks',29)
-  var jian = new Person('Jian', 'Yang',24)
-  var jared = new Person ('Jared','Dunn',28)
+  var richard = new Person('Richard','Hendricks', 29)
+  var jian = new Person('Jian', 'Yang', 24)
+  var jared = new Person ('Jared','Dunn', 28)
 
   console.log(richard)
   console.log(jian)
@@ -62,9 +55,9 @@
 Mostre no console o nome completo de cada pessoa.
 */
 console.log( '\nNomes das pessoas:' );
-console.log(richard.getFullName())
-console.log(jian.getFullName())
-console.log(jared.getFullName())
+console.log(richard.getFullName() )
+console.log(jian.getFullName() )
+console.log(jared.getFullName() )
 
 
 /*
@@ -82,7 +75,7 @@ cada um. A frase deverá ser no formato:
 - "[NOME COMPLETO] agora tem [NOVA IDADE] anos."
 */
 console.log( '\nNova idade das pessoas:' );
-console.log(richard.addAge(7))
-console.log(jian.addAge(7))
-console.log(jared.addAge(7))
+console.log(`${richard.getFullName()} agora tem ${richard.addAge(7)}`)
+console.log(`${jian.getFullName()} agora tem ${jian.addAge(7)}`)
+console.log(`${jared.getFullName()} agora tem ${jared.addAge(7)}`)
 });
