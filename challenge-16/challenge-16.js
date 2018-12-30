@@ -62,15 +62,15 @@
   Usando o replace(), faça a string "Roberto" virar "Roberta".
   Mostre o resultado no console.
   */
-  console.log( '\nEra "Robb", agora é:' );
-  console.log(friends[4].replace('R','B'))
+  console.log( '\nEra "Roberto", agora é:' );
+  console.log('Roberto'.replace('to','ta'));
 
   /*
   Mostre no console a parte "nando" da string "Fernando". Use o método que
   faz a busca do final para o início da string.
   */
   console.log( '\nParte de uma string:' );
-  'Fernando'.substring(8,3)
+  'Fernando'.substring(8,3);
 
   /*
   Declare uma variável chamada `myName`, que receba o seu primeiro nome,
