@@ -37,7 +37,7 @@ Não use estruturas de repetição para somar os argumentos.
 Na primeira linha, dentro da função, deixe um console.log para mostrar todos
 os parâmetros passados para essa função.
 */
-const sumReducer = (accumulator, current) => + accumulator + + current;
+const sumReducer = (accumulator, current) => Number(accumulator) + Number(current);
 
 function sum(...param) {
   console.log("Todos os parâmetros", ...param);
