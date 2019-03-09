@@ -72,7 +72,7 @@ da string. Mostre a representação em string dessa função no console.
 */
 console.log("\nFunção que limpa entrada do usuário (somente números):");
 function justNumbers(userString) {
-  return userString.match(/\d/g);
+  return userString.match(/\d+/g);
 }
 
 /*
