@@ -1,3 +1,5 @@
+(function(){
+  'use strict'
 /*
 Vamos desenvolver mais um projeto. A ideia é fazer uma mini-calculadora.
 As regras são:
@@ -23,3 +25,52 @@ multiplicação (x), então no input deve aparecer "1+2x".
 input;
 - Ao pressionar o botão "CE", o input deve ficar zerado.
 */
+
+let $console = document.querySelector('[type="number"]');
+
+const $sumSignal = new Signal( document.querySelector('#plus') );
+const $minusSignal = new Signal( document.querySelector('#minus') );
+const $multipllySignal = new Signal(document.querySelector('#multiplly') );
+const $divideSignal = new Signal( document.querySelector('#divide') );
+
+
+const $equalSignal = document.querySelector('#equals');
+const $clearButton = document.querySelector('#clear');
+
+const $allNumbers = document.querySelectorAll('.numbers');
+const $allOperators = [
+  $sumSignal.hisSignal,
+  $minusSignal.hisSignal,
+  $multipllySignal.hisSignal,
+  $divideSignal.hisSignal
+]
+
+function Signal(hisId){
+  this.hisId = hisId,
+  this.hisSignal = hisId.value,
+  this.operation = function(a,b){
+    return console.log(a , this.signal , b);
+  }
+}
+
+$allNumbers.forEach(function(element){
+  element.addEventListener('click',function(){
+    $console.value += element.value;
+  })
+})
+
+$allOperators.forEach(function(el){
+  el.addEventListener('click',function(){
+    $console.value += el.hisSignal;
+  })
+})
+
+
+
+$clearButton.addEventListener('click', _ => $console.value=0);
+
+
+
+$equalSignal.addEventListener('click',function(){} )
+
+})();
