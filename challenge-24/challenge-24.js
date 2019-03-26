@@ -1,3 +1,5 @@
+(function(){
+  'use strict';
 /*
 Nossa calculadora agora está funcional! A ideia desse desafio é modularizar
 o código, conforme vimos na aula anterior. Quebrar as responsabilidades
@@ -15,6 +17,8 @@ var $buttonsNumbers = document.querySelectorAll('[data-js="button-number"]');
 var $buttonsOperations = document.querySelectorAll('[data-js="button-operation"]');
 var $buttonCE = document.querySelector('[data-js="button-ce"]');
 var $buttonEqual = document.querySelector('[data-js="button-equal"]');
+
+var operations = ['+', '-', 'x', '÷'];
 
 Array.prototype.forEach.call($buttonsNumbers, function(button) {
   button.addEventListener('click', handleClickNumber, false);
@@ -39,7 +43,7 @@ function handleClickCE() {
 }
 
 function isLastItemAnOperation(number) {
-  var operations = ['+', '-', 'x', '÷'];
+
   var lastItem = number.split('').pop();
   return operations.some(function(operator) {
     return operator === lastItem;
@@ -47,10 +51,8 @@ function isLastItemAnOperation(number) {
 }
 
 function removeLastItemIfItIsAnOperator(number) {
-  if(isLastItemAnOperation(number)) {
-    return number.slice(0, -1);
-  }
-  return number;
+  return isLastItemAnOperation(number) ? number.slice(0,-1) : number;
+ 
 }
 
 function handleClickEqual() {
@@ -73,3 +75,4 @@ function handleClickEqual() {
     }
   });
 }
+})(win,doc);

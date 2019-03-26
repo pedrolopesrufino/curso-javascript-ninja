@@ -1,4 +1,4 @@
-(function() {
+(function(win,doc) {
   "use strict";
   /*
   Vamos desenvolver mais um projeto. A ideia é fazer uma mini-calculadora.
@@ -26,43 +26,61 @@
   - Ao pressionar o botão "CE", o input deve ficar zerado.
   */
 
-  let $console = document.querySelector('[type="text"]');
-
-  const $sumSignal = new Signal(document.querySelector("#plus"));
-  const $minusSignal = new Signal(document.querySelector("#minus"));
-  const $multipllySignal = new Signal(document.querySelector("#multiplly"));
-  const $divideSignal = new Signal(document.querySelector("#divide"));
-  const $x = new Signal(document.querySelector("#x"));
-
-
+  const $console = document.querySelector('[type="text"]');
+ 
   const $equalSignal = document.querySelector("#equals");
   const $clearButton = document.querySelector("#clear");
 
-  const $allNumbers = document.querySelectorAll(".numbers");
+  const $allNumbers = document.querySelectorAll('[data-js="numbers"]');
+  const $allOperators = document.querySelectorAll('[data-js="operators"]');
 
-  $sumSignal.description = "soma";
+  const operators = ['+','-','*','/'];
 
-  const $allOperators = [
-    $sumSignal.hisId,
-    $minusSignal.hisId,
-    $multipllySignal.hisId,
-    $divideSignal.hisId
-  ];
-  console.log($x)
+  $clearButton.addEventListener("click", clear , false);
+  $equalSignal.addEventListener("click", result , false);
 
-  function Signal(hisId) {
-    (this.hisId = hisId),
-      (this.hisSignal = hisId.value),
-      (this.operation = function(a, b) {
-        return console.log(a, this.signal, b);
-      })
+  Array.prototype.forEach.call( $allOperators , concatOperators)
+  Array.prototype.forEach.call( $allNumbers , concatNumbers )
+
+  function clear(){ 
+    $console.value = 0;  
   }
-  $x.hisId.addEventListener('click',function(){
-    $console = $console + $x.hisSignal;
-  })
 
-  $allNumbers.forEach(function(element) {
-    element.addEventListener("click", function() {
+  function result(){
+    popLastOperator();
+  
+  let numbers = $console.value.split(/[+*\/-]/)
+  let operatorSignal = $console.value.match(/\D+/g)
+  
+  $console.value = matchOperation(operatorSignal.toString(),numbers)
+  }
+
+  function matchOperation(operator,number){    
+    switch(operator){
+      case '+':
+        return Number(number[0]) + Number(number[1]); 
+      case '-':
+        return Number(number[0]) - Number(number[1]); 
+      case '*':
+        return Number(number[0]) * Number(number[1]); 
+      case '/':
+        return Number(number[0]) / Number(number[1]);  
+      default:
+        return '0'          
+    }    
+  }
+
+  function concatOperators(button){
+
+    button.addEventListener('click', _ => {
+      $console.value =  handleDuplicateOperators(button);
+      
+    },false);
+  }
+
+  function concatNumbers(element) {
+
+    element.addEventListener("click", _ => {
       if ($console.value != 0 || $console.value != element.value) {
         if ($console.value == 0) {
           $console.value = element.value;
@@ -70,16 +88,33 @@
           $console.value += element.value;
         }
       }
-    });
-  });
 
-  $allOperators.forEach(function(el){
-    el.addEventListener("click",function(){
-      $console.value += el.hisSignal;
-    })
-  })
+    },false);
+  }
 
-  $clearButton.addEventListener("click", _ => ($console.value = 0));
 
-  $equalSignal.addEventListener("click", function() {});
+  function handleDuplicateOperators(button){
+
+    let splittedConsole = $console.value.split(''); 
+    let lastElement = splittedConsole.slice(-1);
+    //o ultimo é um operador?
+    operators.some( item => item == lastElement) ? splittedConsole[splittedConsole.length-1] = button.value : splittedConsole.push(button.value)
+    return splittedConsole.join('')
+  }
+
+
+  function popLastOperator(){
+    let staggedConsole = $console.value.split('');
+   if (
+    staggedConsole[staggedConsole.length - 1] === '+' ||
+    staggedConsole[staggedConsole.length - 1] === '-' ||
+    staggedConsole[staggedConsole.length - 1] === '*' ||
+    staggedConsole[staggedConsole.length - 1] === '/' 
+    ){
+      staggedConsole.pop();
+    }  
+    $console.value = staggedConsole.join('');
+  }
+
+
 })();
