@@ -27,7 +27,7 @@ no primeiro parâmetro. O índice usado para retornar o valor, deve ser o númer
 segundo parâmetro.
 */
 
-function funcion(array,num){
+function showArray(array,num){
     return array[num];
 }
 
@@ -35,14 +35,14 @@ function funcion(array,num){
 Declare uma variável que recebe um array com 5 valores, de tipos diferentes.
 */
 
-var vetor = [0,"reckless",null,NaN,["one","two","three","four","five"]];
+const vetor = [0,"reckless",null,NaN,["one","two","three","four","five"]];
 
 /*
 Invoque a função criada acima, fazendo-a retornar todos os valores do último
 array criado.
 */
 
-funcion(vetor,1);
+showArray(vetor,1);
 
 /*
 Crie uma função chamada `book`, que recebe um parâmetro, que será o nome do

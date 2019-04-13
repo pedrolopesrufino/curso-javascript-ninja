@@ -1,0 +1,35 @@
+body {
+  height: 100%;
+  min-height: 100%;
+}
+body h1 {
+  font: 15px;
+  color: rgba(0, 0, 0, 0.7);
+}
+body .container {
+  background-color: #fffff4;
+  height: 100%;
+  min-height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+body .container .box {
+  height: 250px;
+  width: 250px;
+}
+body .container .box .figure {
+  height: 200px;
+  width: 250px;
+  cursor: grab;
+}
+body .container .box .figure:active {
+  cursor: grabbing;
+}
+body .container .bin {
+  background-image: url("../img/empty-bin.ico");
+}
+
+/*# sourceMappingURL=style.scss.map */
+
+/*# sourceMappingURL=style.css.map */
