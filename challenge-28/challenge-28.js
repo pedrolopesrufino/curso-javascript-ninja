@@ -1,3 +1,6 @@
+(function () {
+  'use strict'
+
   /*
   No HTML:
   - Crie um formulário com um input de texto que receberá um CEP e um botão
@@ -25,3 +28,49 @@
   - Utilize a lib DOM criada anteriormente para facilitar a manipulação e
   adicionar as informações em tela.
   */
+
+  let $cep = document.querySelector('[name="cep-input"]')
+  const $msgError = document.querySelector("[data-js='message-error']")
+  const $button = document.querySelector('[type="button"]')
+
+  $button.addEventListener('click', function () {
+    buscarCep($cep.value)
+  })
+
+  function buscarCep(cep) {
+    const xhr = new XMLHttpRequest()
+    const url = `https://viacep.com.br/ws/${cep}/json/`
+
+    xhr.open('GET', url, true)
+    xhr.send(null)
+
+
+    xhr.onreadystatechange = _ => {
+      if (xhr.readyState == 3){
+        $msgError.innerHTML = `buscando resultados para "${$cep.value}"`
+      }
+
+      if (xhr.readyState == 4) {
+        let endereco = JSON.parse(xhr.responseText)
+        if(!!endereco.uf){
+          return (
+            document.querySelector('[name="logradouro"]').value = endereco.logradouro,
+            document.querySelector('[name="complemento"]').value = endereco.complemento,
+            document.querySelector('[name="bairro"]').value = endereco.bairro,
+            document.querySelector('[name="municipio"]').value = endereco.localidade,
+            document.querySelector('[name="uf"]').value = endereco.uf,
+            $msgError.innerHTML = ''
+          )
+        }
+        else{
+          $msgError.innerHTML = `não encontramos resultados para "${$cep.value}"` 
+        }
+      }
+
+
+
+
+    }
+  }
+
+})()
