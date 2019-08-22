@@ -1,5 +1,5 @@
-(function () {
-  'use strict'
+(function() {
+  "use strict";
 
   /*
   No HTML:
@@ -10,7 +10,6 @@
   preenchidas com os dados da requisição feita no JS.
   - Crie uma área que receberá mensagens com o status da requisição:
   "Carregando, sucesso ou erro."
-
   No JS:
   - O CEP pode ser entrado pelo usuário com qualquer tipo de caractere, mas
   deve ser limpo e enviado somente os números para a requisição abaixo;
@@ -29,48 +28,59 @@
   adicionar as informações em tela.
   */
 
-  let $cep = document.querySelector('[name="cep-input"]')
-  const $msgError = document.querySelector("[data-js='message-error']")
-  const $button = document.querySelector('[type="button"]')
+  let $cep = document.querySelector('[name="cep-input"]');
+  const $msgError = document.querySelector("[data-js='message-error']");
+  const $button = document.querySelector('[type="button"]');
 
-  $button.addEventListener('click', function () {
-    buscarCep($cep.value)
-  })
+  $cep.addEventListener("keyup", function() {
+    mascararCep($cep);
+  });
+
+  $button.addEventListener("click", function() {
+    buscarCep($cep.value);
+  });
+
+  function mascararCep(input) {
+    return (
+      (input.value = input.value.replace(/\D/g, "")),
+      (input.value = input.value.replace(/(\d{5})/, "$1" + "-"))
+    );
+  }
 
   function buscarCep(cep) {
-    const xhr = new XMLHttpRequest()
-    const url = `https://viacep.com.br/ws/${cep}/json/`
+    cep = cep.replace(/\D/, "");
 
-    xhr.open('GET', url, true)
-    xhr.send(null)
+    const xhr = new XMLHttpRequest();
+    const url = `https://viacep.com.br/ws/${cep}/json/`;
 
+    xhr.open("GET", url, true);
+    xhr.send(null);
 
     xhr.onreadystatechange = _ => {
-      if (xhr.readyState == 3){
-        $msgError.innerHTML = `buscando resultados para "${$cep.value}"`
+      if (xhr.readyState == 3) {
+        $msgError.innerHTML = `buscando resultados para "${$cep.value}"`;
       }
 
       if (xhr.readyState == 4) {
-        let endereco = JSON.parse(xhr.responseText)
-        if(!!endereco.uf){
+        let endereco = JSON.parse(xhr.responseText);
+        if (!!endereco.uf) {
           return (
-            document.querySelector('[name="logradouro"]').value = endereco.logradouro,
-            document.querySelector('[name="complemento"]').value = endereco.complemento,
-            document.querySelector('[name="bairro"]').value = endereco.bairro,
-            document.querySelector('[name="municipio"]').value = endereco.localidade,
-            document.querySelector('[name="uf"]').value = endereco.uf,
-            $msgError.innerHTML = ''
-          )
-        }
-        else{
-          $msgError.innerHTML = `não encontramos resultados para "${$cep.value}"` 
+            (document.querySelector('[name="logradouro"]').value =
+              endereco.logradouro),
+            (document.querySelector('[name="complemento"]').value =
+              endereco.complemento),
+            (document.querySelector('[name="bairro"]').value = endereco.bairro),
+            (document.querySelector('[name="municipio"]').value =
+              endereco.localidade),
+            (document.querySelector('[name="uf"]').value = endereco.uf),
+            ($msgError.innerHTML = "")
+          );
+        } else {
+          $msgError.innerHTML = `não encontramos resultados para "${
+            $cep.value
+          }"`;
         }
       }
-
-
-
-
-    }
+    };
   }
-
-})()
+})();
