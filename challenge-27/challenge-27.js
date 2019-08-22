@@ -64,6 +64,39 @@
     return document.querySelectorAll(element);
   }
 
+  DOM.prototype.isArray = function isArray(args) {
+    return Object.prototype.toString.call(args) === '[object Array]'
+  }
+
+  DOM.prototype.isObject = function isObject(args) {
+    return Object.prototype.toString.call(args) === '[object Object]'
+  }
+
+  DOM.prototype.isFunction = function isFunction(args) {
+    return Object.prototype.toString.call(args) === '[object Function]'
+  }
+
+
+  DOM.prototype.isNumber = function isNumber(args) {
+    return Object.prototype.toString.call(args) === '[object Number]'
+  }
+
+
+  DOM.prototype.isString = function isNumber(args) {
+    return Object.prototype.toString.call(args) === '[object String]'
+  }
+
+
+  DOM.prototype.isBoolean = function isBoolean(args) {
+    return Object.prototype.toString.call(args) === '[object Boolean]'
+  }
+
+
+  DOM.prototype.isNull = function isNull(args) {
+    return Object.prototype.toString.call(args) === '[object Null]' ||
+      Object.prototype.toString.call(args) === '[object Undefined]';
+  }
+
   DOM.prototype.on = function on(eventType, callback) {
     Array.prototype.forEach.call(this.element, function (element) {
       element.addEventListener(eventType, callback, false);
