@@ -50,13 +50,14 @@
   function buscarCep(cep) {
     cep = cep.replace(/\D/, "");
 
+
     if(cep.length != 8) $msgError.innerHTML = 'Alôooo o cep tem 8 números';
 
     const xhr = new XMLHttpRequest();
     const url = `https://viacep.com.br/ws/${cep}/json/`;
     const isRequestOk = _ => xhr.readyState === 4 && xhr.status === 200;
 
-    xhr.open("GET", url, true);
+   xhr.open("GET", url, true);
     xhr.send(null);
 
     xhr.onreadystatechange = _ => {
@@ -64,6 +65,7 @@
 
 
       if (isRequestOk) {
+
         let endereco = JSON.parse(xhr.responseText);
         if (!!endereco.uf) {
           return (
