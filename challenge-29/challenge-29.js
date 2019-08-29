@@ -1,5 +1,7 @@
-(function() {
+(function () {
   'use strict';
+
+
 
   /*
   Vamos estruturar um pequeno app utilizando módulos.
@@ -36,4 +38,59 @@
   que será nomeado de "app".
   */
 
-})();
+  let listaCarros = []
+
+  class Carro{
+    constructor(img,placa,ano,modelo,cor){
+      this.img = img,
+      this.placa = placa,
+      this.ano = ano, 
+      this.modelo = modelo,
+      this.cor = cor
+    }
+  }
+
+  document.querySelector('[type="button"]').onclick =
+  
+  function createNewCar(){
+    listaCarros.push(new Carro(
+      document.querySelector('[data-js="img"]').value, 
+      document.querySelector('[data-js="placa"]').value ,
+      document.querySelector('[data-js="ano"]').value ,
+      document.querySelector('[data-js="modelo"]').value ,
+      document.querySelector('[data-js="cor"]').value 
+      ))
+    console.log(listaCarros)
+  }
+
+  function reqCompanyData() {
+    const xhr = new XMLHttpRequest()
+    const url = './company.json'
+    const isRequestOk = _ => xhr.readyState === 4 && xhr.status === 200;
+
+    xhr.open('GET', url, true);
+    xhr.send(null);
+    xhr.onreadystatechange = _ => {
+
+      if (isRequestOk()) {
+        let company = JSON.parse(xhr.responseText);
+        document.querySelector('[data-js="company-name"]').innerHTML =
+          company.name;
+          document.querySelector('[data-js="company-number"]').innerHTML =
+          company.phone
+      }
+    }
+  }
+
+  function app() {
+    return {
+
+      init: function init() {
+        this.companyInfo();
+      },
+      
+      companyInfo: reqCompanyData
+    }
+  }
+  app().init();
+})(window.DOM);

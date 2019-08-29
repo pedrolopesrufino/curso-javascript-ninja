@@ -5,20 +5,105 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <script src="challenge-29" defer></script>
+  <script src="./challenge-29.js" defer></script>
+  <script src="./DOM.js" defer></script>
   <title>Document</title>
 </head>
 
 <body>
-  <form action="/" method="post">
-    <input type="file" name="img" id="">
-    <input type="text" placeholder="placa do carro" name="marca" id="">
-    <input type="text" placeholder="ano" name="ano" maxlength=4 id="">
-    <input type="text" placeholder="modelo" name="placa" id="">
-    <input type="color" name="cor" id="">
-    <input type="submit" value="cadastrar">
-  </form>
 
+  <header>
+    <h1>Boas vindas a <span data-js="company-name"></span> </h1>
+    <p>
+      Para mais informações, ligue-nos, em
+      <span data-js="company-number"></span>
+    </p>
+  </header>
+
+  <main>
+      <input data-js="img" type="file" name="img" id="">
+      <input data-js="placa" type="text" placeholder="placa do carro" name="marca" id="">
+      <input data-js="ano" type="text" placeholder="ano" name="ano" maxlength=4 id="">
+      <input data-js="modelo" type="text" placeholder="modelo" name="placa" id="">
+      <input data-js="cor" type="color" name="cor" id="">
+      <input type="button" value="cadastrar">
+
+    <section class="all-cars">
+      <div class="carro">
+        <div class="img">
+          <img src="" alt="">
+        </div>
+        <span class="column">
+          <p class="placa">sasasas</p>
+          <p class="modelo">sasasa</p>
+        </span>
+        <span class="column">
+          <p class="ano">888</p>
+        </span>
+      </div>
+    </section>
+  </main>
 </body>
 
 </html>
+
+
+<style>
+
+  main{
+    display: grid;
+    grid-template-columns: 23vw 60vw;
+  }
+  form {
+    width: 25vw;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+
+  form input {
+    margin: 10px;
+  }
+
+  div.carro {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    box-shadow: 1px 1px 1px rgba(170, 168, 168, 0.651);
+    background-color: rgb(219, 219, 219);
+    border-right: inset rgb(139, 115, 226) 15px;
+    height: 30vh;
+    width: 75vw;
+  }
+
+  .img {
+    height: 20vh;
+    width: 20vw;
+    background-color: #7e84ce5e;
+  }
+
+  span.column {
+    display: flex;
+    flex-direction: column;
+  }
+
+
+  input{
+    height: 20px;
+    padding: 5px 5px 5px 15px;
+    background-color: inherit;
+    border: 0;
+    box-shadow: 1px 1px 1px rgba(170, 168, 168, 0.651);
+    outline: none;
+    border-radius: 4px;
+    width: 200px;
+  }
+
+  input[type=submit]{
+    background-color: blueviolet;
+    height: 30px;
+    color: aliceblue;
+  }
+
+</style>
