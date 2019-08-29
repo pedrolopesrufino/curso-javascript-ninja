@@ -40,28 +40,58 @@
 
   let listaCarros = []
 
-  class Carro{
-    constructor(img,placa,ano,modelo,cor){
+  class Carro {
+    constructor(img, placa, ano, modelo, cor) {
       this.img = img,
-      this.placa = placa,
-      this.ano = ano, 
-      this.modelo = modelo,
-      this.cor = cor
+        this.placa = placa,
+        this.ano = ano,
+        this.modelo = modelo,
+        this.cor = cor
     }
   }
 
-  document.querySelector('[type="button"]').onclick =
-  
-  function createNewCar(){
+
+  function createNewCar() {
     listaCarros.push(new Carro(
-      document.querySelector('[data-js="img"]').value, 
-      document.querySelector('[data-js="placa"]').value ,
-      document.querySelector('[data-js="ano"]').value ,
-      document.querySelector('[data-js="modelo"]').value ,
-      document.querySelector('[data-js="cor"]').value 
-      ))
+      document.querySelector('[data-js="img"]').value,
+      document.querySelector('[data-js="placa"]').value,
+      document.querySelector('[data-js="ano"]').value,
+      document.querySelector('[data-js="modelo"]').value,
+      document.querySelector('[data-js="cor"]').value
+    ))
     console.log(listaCarros)
   }
+
+  function renderAllCars() {
+    for (let carro of listaCarros) {
+      console.log('aaa', carro)
+      document.querySelector('.all-cars').innerHTML = 
+        `
+<div class="carro">
+        <div class="img">
+          <img src="${carro.img}" alt="">
+        </div>
+        <span class="column">
+          <p class="placa">${carro.placa}</p>
+          <p class="modelo">${carro.modelo}</p>
+        </span>
+        <span class="column">
+          <p class="ano">${carro.ano}</p>
+        </span>
+      </div>
+`;
+document.querySelector('.carro').style.borderRight =  ` inset ${carro.cor} 15px` ;
+      
+    }
+  }
+
+  document.querySelector('[type="button"]').addEventListener('click',
+    function () {
+      console.log('foi')
+      createNewCar()
+      renderAllCars()
+    }
+  )
 
   function reqCompanyData() {
     const xhr = new XMLHttpRequest()
@@ -76,7 +106,7 @@
         let company = JSON.parse(xhr.responseText);
         document.querySelector('[data-js="company-name"]').innerHTML =
           company.name;
-          document.querySelector('[data-js="company-number"]').innerHTML =
+        document.querySelector('[data-js="company-number"]').innerHTML =
           company.phone
       }
     }
@@ -88,7 +118,7 @@
       init: function init() {
         this.companyInfo();
       },
-      
+
       companyInfo: reqCompanyData
     }
   }
